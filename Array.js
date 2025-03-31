@@ -22,3 +22,4 @@ console.log(filter(arr1,firstIndex))
 const arr3 = [-2, -1, 0, 1, 2];
 const plusOne = function (n) { return n + 1; };
 console.log(filter(arr3, plusOne)); 
+
