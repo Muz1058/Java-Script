@@ -47,8 +47,7 @@ console.log("Array After Slice : ",arr);//  Array After Slice :  [ 1, 2, 3, 4, 5
 const asplice=arr.splice(1,3);
 console.log("splice : ",asplice);   //   splice :  [ 2, 3, 4 ]
 
-console.log("Array After Slice : ",arr);   //  Array After Slice :  [ 1, 5 ]
-
+console.log("Array After Slice : ",arr);   //  Array After Slice :  [ 1, 5 ]    Array manipulated
 
 
 
