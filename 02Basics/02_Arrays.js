@@ -16,5 +16,21 @@ const concatenatedHero= marvelHeros.concat(dc);
 
 //-----------------Spread operator-----------------------
 
-const spreadHeros =[...marvelHeros,...dc]
-console.log(spreadHeros);
+const spreadHeros =[...marvelHeros,...dc];
+//console.log(spreadHeros);
+
+//----------------flat method------------------
+/*The maximum recursion depth
+Returns a new array with all sub-array elements concatenated into it recursively up to the specified depth. */
+const anotherAyyay=[1,2,3,[4,5,6],7,[6,7,[4,5]]];
+console.log(anotherAyyay);   //[ 1, 2, 3, [ 4, 5, 6 ], 7, [ 6, 7, [ 4, 5 ] ] ]
+                            // Array in array inside another Array
+const real_another_array=anotherAyyay.flat(Infinity)
+
+console.log(real_another_array);
+//output 
+/*[
+    1, 2, 3, 4, 5,
+    6, 7, 6, 7, 4,
+    5
+  ]*/
