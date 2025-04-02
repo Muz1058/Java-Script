@@ -1,29 +1,27 @@
 //Singelton object
 
-// const tinderUser = new Object()   
+// const tinderUser = new Object()
 
-const tinderUser = {}
+const tinderUser = {};
 
-tinderUser.id = "123abc"
-tinderUser.name = "Sammy"
-tinderUser.isLoggedIn = false
+tinderUser.id = "123abc";
+tinderUser.name = "Sammy";
+tinderUser.isLoggedIn = false;
 
 // console.log(tinderUser);
 
 const regularUser = {
-    email: "some@gmail.com",
-    fullname: {
-        userfullname: {
-            firstname: "hitesh",
-            lastname: "choudhary"
-        }
-    }
-}
+  email: "some@gmail.com",
+  fullname: {
+    userfullname: {
+      firstname: "hitesh",
+      lastname: "choudhary",
+    },
+  },
+};
 //------------------Accessing Nested Ojects------------------
 
 // console.log(regularUser.fullname.userfullname.firstname);
-
-
 
 // //-----------------Assign Method for Objects------------------
 // const obj1 = {1: "a", 2: "b"}
@@ -71,7 +69,6 @@ const regularUser = {
 //  const obj3 = { obj1, obj2 }
 //  const obj3 = Object.assign({}, obj1, obj2, obj4)
 
-
 // ----------------------Spreading Objects-------------------------
 
 //const obj3 = {...obj1, ...obj2}
@@ -80,21 +77,21 @@ const regularUser = {
 //-------------------------------Objects inside of Arrays------------------
 
 const users = [
-    {
-        id: 1,
-        email: "h@gmail.com"
-    },
-    {
-        id: 1,
-        email: "h@gmail.com"
-    },
-    {
-        id: 1,
-        email: "h@gmail.com"
-    },
-]
+  {
+    id: 1,
+    email: "h@gmail.com",
+  },
+  {
+    id: 1,
+    email: "h@gmail.com",
+  },
+  {
+    id: 1,
+    email: "h@gmail.com",
+  },
+];
 
-users[1].email
+//users[1].email;
 // console.log(tinderUser);
 
 // console.log(Object.keys(tinderUser));  //used to loop obj
@@ -103,5 +100,31 @@ users[1].email
 
 // console.log(tinderUser.hasOwnProperty('isLoggedIn'));  //check a key exist in object or not
 
+//------------------------Object De Structure-----------------
+const course = {
+    coursename: "js in hindi",
+    price: "999",
+    courseInstructor: "hitesh"
+}
 
+//console.log(course.courseInstructor);
 
+//const {courseInstructor}=course
+
+//console.log(courseInstructor);  //we can access course.courseInstructor by only courseInstructor 
+//further simplification for giving your own name to to key of an object
+ 
+const {courseInstructor:inst}=course;
+console.log(inst);
+
+// {
+//     "name": "hitesh",
+//     "coursename": "js in hindi",
+//     "price": "free"
+// }
+
+[
+    {},
+    {},
+    {}
+]
