@@ -11,11 +11,11 @@ if ( temperature === 40 ){
 console.log("Execute");
 // <, >, <=, >=, ==, !=, ===, !==
 
-// const score = 200
+const score = 200
 
-// if (score > 100) {
-//     let power = "fly"
-//     console.log(`User power: ${power}`);
-// }
+if (score > 100) {
+    let power = "fly"
+    console.log(`User power: ${power}`);
+}
 
 // console.log(`User power: ${power}`);
