@@ -26,6 +26,9 @@ const map=new Map()
 map.set("pk","Pakistan")
 map.set("KSA","Saudi Arabia")
 map.set("UAE","United Arab Emirates")
+for (const key of map) {
+   // console.log(key);    
+}
 
 for (const [key,value] of map) {
    // console.log(key);    
