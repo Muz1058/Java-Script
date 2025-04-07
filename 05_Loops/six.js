@@ -3,17 +3,32 @@
 
 // const values = coding.forEach( (item) => {
 //     //console.log(item);
-//     return item
+//     return item 
 // } )
+//  console.log(values);  //undefined
 
-// console.log(values);
+// //------------------------------------------
+// // For Each Loop does not return values
+// //-------------------------------------------
 
-const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+// //------------------------------------------
+// // Filter Method with paranthesis myNums.filter((nums) => nums>  4 )
+// //-------------------------------------------
+  const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// // const newNums =myNums.filter((nums) => nums>  4 )
+// // console.log(newNums); //[ 5, 6, 7, 8, 9, 10 ]
+
+
+// //------------------------------------------
+// // Filter Method with Scope  myNums.filter( (num) => {  return num > 4 } )
+// //-------------------------------------------
 // const newNums = myNums.filter( (num) => {
-//     return num > 4
+//     return num > 4  // if we want to use { scope } then it is must to write return
 // } )
+// console.log(newNums); 
 
+// --------------Filter vs ForEach
 // const newNums = []
 
 // myNums.forEach( (num) => {
@@ -22,7 +37,7 @@ const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 //     }
 // } )
 
-// console.log(newNums);
+// console.log(newNums);  //[ 5, 6, 7, 8, 9, 10 ]
 
 
 const books = [
