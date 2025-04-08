@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 04 Removing</title>
+</head>
+<body style="background-color: #212121; color: antiquewhite;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(lang){
+        const li=document.createElement('li');
+        li.innerHTML=`${lang}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("Python")
+    addLanguage("Java")
+    function addOptimizedLanguage(lang ){
+        const li=document.createElement('li')
+        li.appendChild(document.createTextNode(`${lang}`))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptimizedLanguage("C++")
+    addOptimizedLanguage("Go lang")
+
+    //Edit
+   const secondlang= document.querySelector('li:nth-child(2)')
+  // secondlang.innerHTML="Rust"  //Not optimized approach
+  const newLi=document.createElement('li');
+  newLi.textContent="Rust"     
+  secondlang.replaceWith(newLi)
+  console.log(secondlang);
+
+  //edit
+  const firstLang=document.querySelector('li:nth-child(1)')
+  firstLang.outerHTML='<li>TypeScript</li>'
+
+  //remove
+  const lastLang=document.querySelector('li:last-child')
+  lastLang.remove()
+</script>
+</html>
