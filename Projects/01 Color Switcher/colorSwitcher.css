@@ -1,53 +1,96 @@
 html {
-    margin: 0;
-  }
-  body>h1,h2{
-    text-align: center;
-  }
-  
-  span {
-    display: block;
-  }
-  nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
+  margin: 0;
+}
+body > h1, h2 {
+  text-align: center;
+}
+
+span {
+  display: block;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+nav > a {
+  margin: 0px auto 50px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 40%;
+  text-align: center;
+  background-color: rgb(179, 96, 179);
+  font-size: 20px;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  width: 10%;
+  aspect-ratio: 1/1;
+  border: solid black 2px;
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#grey {
+  background: grey;
+}
+#white {
+  background: white;
+}
+#orange {
+  background: orange;
+}
+#yellow {
+  background: yellow;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-mode .button {
+  border-color: white;
+}
+
+
+#toggleDark {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .container {
+      flex-wrap: wrap;
   }
 
-  nav>a{
-    margin: 0px auto 50px;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-    text-align: center;
-    background-color: rgb(179, 96, 179);
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-  }
   .button {
-    width: 10%;
-  aspect-ratio: 1/1;
-    border: solid black 2px;
-    display: inline-block;
+      width: 15%;
   }
-  
-  #grey {
-    background: grey;
+
+  nav > a {
+      width: 80%;
+      margin-bottom: 10px;
   }
-  
-  #white {
-    background: white;
-  }
-  #orange {
-    background: orange;
-  }
-  #yellow {
-    background: yellow;
-  }
+}

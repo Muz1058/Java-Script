@@ -3,10 +3,7 @@ const buttons=document.querySelectorAll('.button');
 const body=document.querySelector('body');
 
 buttons.forEach(function(but)  {
-console.log(but);
 but.addEventListener('click', function(e){
-    console.log(e);
-    console.log(e.target);
     if(e.target.id === 'grey'){
         body.style.backgroundColor=e.target.id
     }
@@ -21,3 +18,11 @@ but.addEventListener('click', function(e){
     }
 })
 }) ;
+document.getElementById('toggleDark').addEventListener('click', () => {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+
+    if (body.classList.contains('dark-mode')) {
+        body.style.backgroundColor = ''; 
+    }
+});
