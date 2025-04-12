@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="GuessTheNumber.css">
+</head>
+<body>
+    <nav>
+        <a href="https://github.com//muz1058" target="_blank">My Github</a>
+        <a href="https://www.linkedin.com/in/muzaffar-ali-1177672a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">My LinkedIn</a>
+    </nav>
+  <div class="container">
+    <div class="wrapper">
+        <h1>Number Guessing Game</h1>
+        <p>Try and guess a random number between 1 and 100</p>
+        <p>You have 10 Attempts to guess the right Number</p>
+
+        <form class="form">
+            <label for="guessField" id="guess"></label>
+            <input type="text" name="guessField" id="guessField" class="guessField" placeholder="Enter a Number" required>
+            <input type="submit" id="subt" value="Submit Guess" class="guessSubmit">
+    </form>
+    </div>
+
+
+    <div class="resultParas">
+        <p class="lowOrHi"></p>
+        <p>Previous Guesses : <span class="guesses"> </span> </p>
+        <p>Remaing Attempts <span class="lastResult">10</span></p>
+
+        
+    </div>
+  </div>
+</body>
+<script src="GuessTheNumber.js"></script>
+</html>
