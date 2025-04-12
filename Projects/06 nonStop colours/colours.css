@@ -1,8 +1,9 @@
 body{
     margin: 0%;
+    text-align: center;
 }
 nav{
-    background-color: #bbb7b9;
+    background-color: #5f585b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,23 +11,39 @@ nav{
 }
 nav > a{
 background-color: rgb(250, 101, 250);
-padding: 20px;
+padding: 20px 100px;
 border-radius: 30px;
-font-size: larger;
-font-weight: bold;
+font-size: 24px;
+font-weight: bolder;
 text-decoration: none;
 }
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
 button {
-    padding: 10px;
+  
+    padding: 40px;
     border: none;
     border-radius: 20px;
     margin: auto;
     transition: all 0.1s ease;
     font-size: 16px;
     cursor: pointer;
+    margin-left: 80px;
+    font-size: 24px;
+    font-weight: bolder;
+
 }
 
 button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+a:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
