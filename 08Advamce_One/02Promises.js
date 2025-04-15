@@ -36,3 +36,14 @@ new Promise(function(resolve,reject){
 
 
 
+const promiseThree=new Promise(function(resolve,reject){
+    setTimeout(function(){
+        resolve({user:"JS",email:"JS@example.com"})
+
+    },1000)
+})
+
+
+promiseThree.then(function(user){
+console.log(user );
+})
