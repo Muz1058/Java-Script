@@ -74,3 +74,39 @@ console.log(myusername);
 }).finally(function(){
     console.log("The promise is either resolve or rejected");
 })
+
+
+const promiseFive=new Promise(function(resolve,reject){
+    setTimeout(function(){
+        let error=true;
+        if(!error){
+            resolve({username:"java5",  password:"123"})
+        }
+        else{
+            reject("Error Five Somthing went wrong")
+        }
+    },1000)
+})
+
+
+async function consumePromiseFive() {
+ try{
+    const response=  await promiseFive
+    console.log(response);
+ }
+ catch(error){
+    console.log(error);
+ }
+}
+
+consumePromiseFive()
+
+// promiseFive.then(function(){
+
+// }).then(()=>{
+
+// }).catch(()=>{
+
+// }).finally(()=>{
+
+// })
