@@ -13,5 +13,21 @@ console.log(multipleBy5.power);  //behavior of object
 console.log(multipleBy5.prototype);
 
 function createUser(userName,score){
-    
+    this.userName=userName;
+    this.score=score;
 }
+
+createUser.prototype.incremennt=function(){
+    this.score++;
+}
+
+
+createUser.prototype.printMe=function(){
+    console.log(`Price : ${this.score}`);
+}
+
+const chai=new createUser("chai",5)
+const tea=new createUser("Tea ",25)
+
+
+chai.printMe()
