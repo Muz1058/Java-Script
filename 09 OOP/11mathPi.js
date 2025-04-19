@@ -1,6 +1,14 @@
-const descripter = Object.getOwnPropertyDescriptor(Math, "PI")
+// const descripter = Object.getOwnPropertyDescriptor(Math, "PI")
 
+// descripter.writable=true
 // console.log(descripter);
+// descripter.value=5;
+// console.log(descripter);
+
+
+
+
+
 
 // console.log(Math.PI);
 // Math.PI = 5
@@ -16,15 +24,15 @@ const chai = {
     }
 }
 
-console.log(Object.getOwnPropertyDescriptor(chai, "name"));
+// console.log(Object.getOwnPropertyDescriptor(chai, "name"));
 
 Object.defineProperty(chai, 'name', {
-    //writable: false,
+   // writable: false,
     enumerable: true,
     
 })
 
-console.log(Object.getOwnPropertyDescriptor(chai, "name"));
+ //console.log(Object.getOwnPropertyDescriptor(chai, "name"));
 
 for (let [key, value] of Object.entries(chai)) {
     if (typeof value !== 'function') {
