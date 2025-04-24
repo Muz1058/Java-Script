@@ -223,6 +223,14 @@
   .fraction-top {
     border-bottom: 1px solid black;
   }
+  .predictionContainer {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    overflow-x: auto;
+  }
   
   @media (max-width: 768px) {
     .container, .result, .dynamicRows {
@@ -262,3 +270,4 @@
       font-size: 16px;
     }
   }
+  
