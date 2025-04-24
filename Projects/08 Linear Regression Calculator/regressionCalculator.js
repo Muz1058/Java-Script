@@ -148,7 +148,12 @@ numberOfRows.addEventListener('keydown', function (e) {
           <p class="regression-line"><b>Regression Line:</b> y = ${m.toFixed(4)}x + ${c.toFixed(4)}</p>
           
           <div class="predictionDiv">
-            <button id="predictionBtn">Make Prediction</button>
+           
+            <button id="R_SquaredBtn">Find R<sup>2</sup></button>
+            <div id="R_SquareContainer"></div>
+            <br>
+             <button id="predictionBtn">Make Prediction</button>
+            
             <div id="predictionContainer"></div>
           </div>
           <br>
@@ -156,6 +161,78 @@ numberOfRows.addEventListener('keydown', function (e) {
         </div>`;
 
       let predictionButton = document.getElementById("predictionBtn");
+      let R_SquaredBtn=document.getElementById("R_SquaredBtn");
+    
+      R_SquaredBtn.addEventListener('click', () => {
+        let yPredicted = [];
+        let yMinusYPredicted = [];
+        let yMinusYPredictedSquare = [];
+        let yMinusYMean = [];
+        let yMinusYMeanSquare = [];
+      
+        for (let i = 0; i < rows; i++) {
+          yPredicted[i] = m * xArray[i] + c;
+          yMinusYPredicted[i] = yArray[i] - yPredicted[i];
+          yMinusYPredictedSquare[i] = Math.pow(yMinusYPredicted[i], 2);
+          yMinusYMean[i] = yArray[i] - yMean;
+          yMinusYMeanSquare[i] = Math.pow(yMinusYMean[i], 2);
+        }
+      
+        let SS_residual = addArray(yMinusYPredictedSquare);
+        let SS_total = addArray(yMinusYMeanSquare);
+        let R_Square = 1 - (SS_residual / SS_total);
+      
+       
+        const resultDiv = document.createElement("div");
+        resultDiv.style.margin = "10px";
+        resultDiv.innerHTML = `<strong>R² = ${R_Square.toFixed(4)}</strong>`;
+        resultDiv.className = "prediction-result";
+        R_SquareContainer.appendChild(resultDiv);
+      
+       
+        const table = document.createElement("table");
+        table.className = "rSquareTable";
+      
+        const thead = document.createElement("thead");
+        thead.innerHTML = `
+          <tr>
+            <th>SR</th>
+            <th>y</th>
+            <th>y - ȳ</th>
+            <th>(y - ȳ)²</th>
+            <th>ŷ</th>
+            <th>y - ŷ</th>
+            <th>(y - ŷ)²</th>
+          </tr>
+        `;
+        table.appendChild(thead);
+      
+        const tbody = document.createElement("tbody");
+        for (let i = 0; i < rows; i++) {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${i + 1}</td>
+            <td>${yArray[i].toFixed(4)}</td>
+            <td>${yMinusYMean[i].toFixed(4)}</td>
+            <td>${yMinusYMeanSquare[i].toFixed(4)}</td>
+            <td>${yPredicted[i].toFixed(4)}</td>
+            <td>${yMinusYPredicted[i].toFixed(4)}</td>
+            <td>${yMinusYPredictedSquare[i].toFixed(4)}</td>
+          `;
+          tbody.appendChild(row);
+        }
+      
+        table.appendChild(tbody);
+        R_SquareContainer.appendChild(table);
+      
+        
+        R_SquaredBtn.remove();
+      });
+      
+    
+      
+      
+      
       
       
       let predictionInputActive = false;
