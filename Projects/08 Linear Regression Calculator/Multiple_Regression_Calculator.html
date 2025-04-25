@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Multiple Regression Calculator</title>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --primary-dark: #2980b9;
+      --secondary-color: #2ecc71;
+      --accent-color: #e74c3c;
+      --text-color: #333;
+      --bg-color: #f5f7fa;
+      --border: #ddd;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: var(--primary-dark);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="number"] {
+      padding: 8px;
+      border: 2px solid var(--border);
+      border-radius: 5px;
+      width: 80px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: center;
+    }
+    thead {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    button {
+      padding: 10px 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: var(--primary-dark);
+    }
+    .highlight {
+      background: #eafaf1;
+      padding: 10px;
+      margin-top: 20px;
+      border-left: 5px solid var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <h1>Multiple Linear Regression Calculator</h1>
+  <div class="container">
+    <label>Number of Data Points: </label>
+    <input type="number" id="numPoints" min="2" />
+    <button onclick="generateTable()">Create Table</button>
+    <div id="dataInputs"></div>
+    <div id="results"></div>
+    <div id="prediction"></div>
+  </div>
+
+  <script>
+    function generateTable() {
+      const n = parseInt(document.getElementById("numPoints").value);
+      if (isNaN(n) || n < 2) return alert("Enter a valid number ≥ 2");
+
+      let html = `<table><thead><tr>
+        <th>SR</th><th>X₁</th><th>X₂</th><th>Y</th></tr></thead><tbody>`;
+      for (let i = 0; i < n; i++) {
+        html += `<tr>
+          <td>${i+1}</td>
+          <td><input type="number" class="x1" /></td>
+          <td><input type="number" class="x2" /></td>
+          <td><input type="number" class="y" /></td>
+        </tr>`;
+      }
+      html += `</tbody></table>
+        <button onclick="calculateRegression()">Calculate Regression</button>`;
+      document.getElementById("dataInputs").innerHTML = html;
+      document.getElementById("results").innerHTML = "";
+      document.getElementById("prediction").innerHTML = "";
+    }
+
+    function calculateRegression() {
+      const x1 = [...document.querySelectorAll(".x1")].map(e => parseFloat(e.value));
+      const x2 = [...document.querySelectorAll(".x2")].map(e => parseFloat(e.value));
+      const y  = [...document.querySelectorAll(".y")].map(e => parseFloat(e.value));
+      const n = x1.length;
+
+      if (x1.includes(NaN) || x2.includes(NaN) || y.includes(NaN)) {
+        return alert("Please complete all fields.");
+      }
+
+      let sumX1 = 0, sumX2 = 0, sumY = 0;
+      let sumX1X1 = 0, sumX2X2 = 0, sumX1X2 = 0;
+      let sumX1Y = 0, sumX2Y = 0;
+      let resultTable = "";
+
+      resultTable += `<h2>Step-by-Step Calculation Table</h2><table><thead><tr>
+        <th>SR</th><th>X₁</th><th>X₂</th><th>Y</th>
+        <th>X₁²</th><th>X₂²</th><th>X₁Y</th><th>X₂Y</th><th>X₁X₂</th>
+      </tr></thead><tbody>`;
+
+      for (let i = 0; i < n; i++) {
+        let x1s = x1[i] ** 2;
+        let x2s = x2[i] ** 2;
+        let x1y = x1[i] * y[i];
+        let x2y = x2[i] * y[i];
+        let x1x2 = x1[i] * x2[i];
+
+        resultTable += `<tr>
+          <td>${i+1}</td><td>${x1[i]}</td><td>${x2[i]}</td><td>${y[i]}</td>
+          <td>${x1s}</td><td>${x2s}</td><td>${x1y}</td><td>${x2y}</td><td>${x1x2}</td>
+        </tr>`;
+
+        sumX1 += x1[i];
+        sumX2 += x2[i];
+        sumY += y[i];
+        sumX1X1 += x1s;
+        sumX2X2 += x2s;
+        sumX1X2 += x1x2;
+        sumX1Y += x1y;
+        sumX2Y += x2y;
+      }
+      resultTable += `</tbody></table>`;
+
+      // Sums Table
+      let sumTable = `<h2>Sum Table</h2><table><thead><tr><th>Sum</th><th>Value</th></tr></thead><tbody>
+      <tr><td>&#8721;Y</td><td>${sumY}</td></tr>
+      <tr><td>&#8721;X₁</td><td>${sumX1}</td></tr>
+      <tr><td>&#8721;X₂</td><td>${sumX2}</td></tr>
+      <tr><td>&#8721;X₁²</td><td>${sumX1X1}</td></tr>
+      <tr><td>&#8721;X₂²</td><td>${sumX2X2}</td></tr>
+      <tr><td>&#8721;X₁X₂</td><td>${sumX1X2}</td></tr>
+      <tr><td>&#8721;X₁Y</td><td>${sumX1Y}</td></tr>
+      <tr><td>&#8721;X₂Y</td><td>${sumX2Y}</td></tr>
+      </tbody></table>`;
+
+      const A = [
+        [n, sumX1, sumX2],
+        [sumX1, sumX1X1, sumX1X2],
+        [sumX2, sumX1X2, sumX2X2]
+      ];
+      const B = [sumY, sumX1Y, sumX2Y];
+
+      function det3(m) {
+        return m[0][0]*(m[1][1]*m[2][2] - m[1][2]*m[2][1])
+             - m[0][1]*(m[1][0]*m[2][2] - m[1][2]*m[2][0])
+             + m[0][2]*(m[1][0]*m[2][1] - m[1][1]*m[2][0]);
+      }
+
+      function replaceCol(m, col, newCol) {
+        return m.map((r, i) => r.map((v, j) => j === col ? newCol[i] : v));
+      }
+
+      const detA = det3(A);
+      const a0 = det3(replaceCol(A, 0, B)) / detA;
+      const a1 = det3(replaceCol(A, 1, B)) / detA;
+      const a2 = det3(replaceCol(A, 2, B)) / detA;
+
+      const yMean = sumY / n;
+      let ssRes = 0, ssTot = 0;
+      let r2Table = `<h2>R² Calculation Table</h2><table><thead><tr>
+        <th>SR</th><th>Y</th><th>Ȳ</th><th>Ŷ</th><th>Y−Ȳ</th><th>(Y−Ȳ)²</th><th>Y−Ŷ</th><th>(Y−Ŷ)²</th>
+      </tr></thead><tbody>`;
+
+      for (let i = 0; i < n; i++) {
+        const yHat = a0 + a1 * x1[i] + a2 * x2[i];
+        const yMinusMean = y[i] - yMean;
+        const yMinusHat = y[i] - yHat;
+        const sqTot = yMinusMean ** 2;
+        const sqRes = yMinusHat ** 2;
+        ssTot += sqTot;
+        ssRes += sqRes;
+        r2Table += `<tr>
+          <td>${i+1}</td>
+          <td>${y[i]}</td>
+          <td>${yMean.toFixed(2)}</td>
+          <td>${yHat.toFixed(2)}</td>
+          <td>${yMinusMean.toFixed(2)}</td>
+          <td>${sqTot.toFixed(2)}</td>
+          <td>${yMinusHat.toFixed(2)}</td>
+          <td>${sqRes.toFixed(2)}</td>
+        </tr>`;
+      }
+      r2Table += `</tbody></table>`;
+      const r2 = 1 - ssRes / ssTot;
+
+      document.getElementById("results").innerHTML = `
+        ${sumTable}
+        <div class="highlight"><h2>Regression Equation</h2>
+        <strong>Y = ${a0.toFixed(4)} + ${a1.toFixed(4)}×X₁ + ${a2.toFixed(4)}×X₂</strong></div>
+        ${resultTable}
+        <div class="highlight"><h2>R² = ${r2.toFixed(4)}</h2></div>
+        ${r2Table}
+        <div class="highlight">
+          <h3>Make a Prediction</h3>
+          <input type="number" id="x1p" placeholder="X₁" />
+          <input type="number" id="x2p" placeholder="X₂" />
+          <button onclick="predict(${a0}, ${a1}, ${a2})">Predict Y</button>
+        </div>
+      `;
+    }
+
+    function predict(a0, a1, a2) {
+      const x1 = parseFloat(document.getElementById("x1p").value);
+      const x2 = parseFloat(document.getElementById("x2p").value);
+      if (isNaN(x1) || isNaN(x2)) return alert("Enter valid values");
+      const y = a0 + a1 * x1 + a2 * x2;
+      document.getElementById("prediction").innerHTML =
+        `<div class="highlight"><strong>Predicted Y = ${y.toFixed(4)}</strong></div>`;
+    }
+  </script>
+</body>
+</html>
