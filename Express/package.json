@@ -1,0 +1,14 @@
+{
+  "name": "startup_planet",
+  "version": "1.0.0",
+  "description": "a dataset of world most promisin startup",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Muz1058",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
